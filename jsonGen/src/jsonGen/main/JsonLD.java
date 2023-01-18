@@ -3,6 +3,7 @@ package jsonGen.main;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,19 +22,24 @@ import jsonGen.bean.Schema;
 public class JsonLD {
 	private JSonObj json;
 	private Schema data;
+	private String prevType;
 
 	public JsonLD(Schema data) {
 		this.data = data;
+		prevType = data.gettype();
 		json = new JSonObj();
 		json = buildJson(data.gettype());
 	}
 
 	private JSonObj buildJson(String type) {
-		switch (type) {
-		case "Hotel":
-			toJsonLD(buildHashMap("Hotel"));
+		switch (type.toLowerCase()) {
+		case "hotel":
+			json = toJsonLD(buildHashMap(type));
 			System.out.println(Json.writeToString(json));
 			break;
+		case "address":
+			json = toJsonLD(buildHashMap(type));
+			return json;
 
 		default:
 			break;
@@ -41,17 +47,50 @@ public class JsonLD {
 		return new JSonObj().add(null);
 	}
 
-	private void toJsonLD(HashMap<String, Object> map) {
+	private JSonObj toJsonLD(HashMap<String, Object> map) {
+		JSonObj jSonObj = new JSonObj();
 		Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
 		while (iterator.hasNext()) {
 			Map.Entry<String, Object> entry = iterator.next();
-			if (data.get(entry.getKey())!= null) {
-				json.addObj(entry.getKey(), data.get(entry.getKey()));	
-			}else {
-//				json.addObj(entry.getKey(), null);
+			if (entry.getKey().indexOf('@') != -1) {
+				String temp = entry.getKey().replaceAll("@", "");
+				prevType = data.gettype(); // backup can be removed
+				data.settype((String) entry.getValue());
+				if (data.get(temp) != null) {
+					jSonObj.addObj(entry.getKey(), data.get(temp));
+					continue;
+				}
+			} else if (entry.getValue() instanceof HashMap) {
+//				if (entry.getValue().leng>1) {
+					
+//				}
+				HashMap<String, Object> innerMap = (HashMap<String, Object>) map.get(entry.getKey());
+				jSonObj.add(entry.getKey(), toJsonLD(innerMap));
+				continue;
+			} else if (data.get(entry.getKey()) != null) {
+				jSonObj.addObj(entry.getKey(), data.get(entry.getKey()));
+				continue;
 			}
-			
 		}
+		return jSonObj;
+	}
+
+	private HashMap<String, Object> buildHashMap(String type) {
+		HashMap<String, Object> map = new HashMap<>();
+		try {
+			JSONTokener tokener = new JSONTokener(new FileReader("./json/" + type.toLowerCase() + "Template.json"));
+			JSONObject json = new JSONObject(tokener);
+			json.toMap().forEach((k, v) -> map.put(k.toString(), v));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	private JSonObj generateInnerJson() {
+		JSonObj tempJSonObj = new JSonObj();
+
+		return tempJSonObj;
 	}
 
 //	private HashMap<String, Object> buildJsonMap(String type) {
@@ -90,19 +129,6 @@ public class JsonLD {
 //		}	
 //		return map;
 //	}
-
-	private HashMap<String, Object> buildHashMap(String type) {
-		HashMap<String, Object> map = new HashMap<>();
-		try {
-			JSONTokener tokener = new JSONTokener(new FileReader("./json/" + type + "Template.json"));
-			JSONObject json = new JSONObject(tokener);
-			json.toMap().forEach((k, v) -> map.put(k.toString(), v));
-//			System.out.println(map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return map;
-	}
 
 //	private String readJsonTemplate(String fname) {
 //		String jsonString = "";

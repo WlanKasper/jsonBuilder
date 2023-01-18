@@ -24,6 +24,8 @@ public class Console {
 	public void exec2() {
 		Schema schema = new Schema("Hotel");
 		schema.setName("The One");
+		schema.setAddressCountry("Italy");
+		schema.setStreetAddress("ye");
 		new JsonLD(schema);
 	}
 
