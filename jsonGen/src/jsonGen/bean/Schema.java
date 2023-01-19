@@ -1,11 +1,25 @@
 package jsonGen.bean;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Set;
+
 public class Schema {
 
 	private static final String context = "http://www.schema.org";
 	private static final String address = "address";
+	private static final String aggregateRating = "aggregateRating";
+	private static final String starRating = "starRating";
+	private static final String areaServed = "areaServed";
+	private static final String founder = "founder";
 	private String type;
-	private String name, streetAddress, addressCountry;
+	private String name, streetAddress, addressCountry, paymentAccepted, priceRange, addressLocality, addressRegoin,
+			contactType, contactOption, email;
+	private Integer numberOfRooms, postalCode, ratingValue, reviewCount, bestRating, worstRating, latitude, longitude;
+	private Boolean petsAllowed;
 
 	public Schema(String type) {
 		this.type = type;
@@ -69,5 +83,6 @@ public class Schema {
 				return null;
 		}
 	}
+	
 
 }

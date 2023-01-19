@@ -18,17 +18,26 @@ import org.htjava.json.Json;
 import org.json.*;
 
 import jsonGen.bean.Schema;
+import jsonLdGen.schemas.Hotel;
+import jsonLdGen.schemas.Thing;
 
 public class JsonLD {
 	private JSonObj json;
-	private Schema data;
+	
+	private Hotel data;
 	private String prevType;
 
 	public JsonLD(Schema data) {
-		this.data = data;
+//		this.data = data;
 		prevType = data.gettype();
 		json = new JSonObj();
 		json = buildJson(data.gettype());
+	}
+
+	public JsonLD(Hotel hotel) {
+		this.data= hotel;
+		json = new JSonObj();
+		json = buildJson(hotel.getType());
 	}
 
 	private JSonObj buildJson(String type) {
@@ -47,50 +56,45 @@ public class JsonLD {
 		return new JSonObj().add(null);
 	}
 
-	private JSonObj toJsonLD(HashMap<String, Object> map) {
-		JSonObj jSonObj = new JSonObj();
-		Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<String, Object> entry = iterator.next();
-			if (entry.getKey().indexOf('@') != -1) {
-				String temp = entry.getKey().replaceAll("@", "");
-				prevType = data.gettype(); // backup can be removed
-				data.settype((String) entry.getValue());
-				if (data.get(temp) != null) {
-					jSonObj.addObj(entry.getKey(), data.get(temp));
-					continue;
-				}
-			} else if (entry.getValue() instanceof HashMap) {
-//				if (entry.getValue().leng>1) {
-					
+//	private JSonObj toJsonLD(HashMap<String, Object> map) {
+//		JSonObj jSonObj = new JSonObj();
+//		Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
+//		while (iterator.hasNext()) {
+//			Map.Entry<String, Object> entry = iterator.next();
+//			if (entry.getKey().indexOf('@') != -1) {
+//				String temp = entry.getKey().replaceAll("@", "");
+////				prevType = data.getClass(); // backup can be removed
+//				if (data.get(temp) != null) {
+//					jSonObj.addObj(entry.getKey(), data.get(temp));
+//					continue;
 //				}
-				HashMap<String, Object> innerMap = (HashMap<String, Object>) map.get(entry.getKey());
-				jSonObj.add(entry.getKey(), toJsonLD(innerMap));
-				continue;
-			} else if (data.get(entry.getKey()) != null) {
-				jSonObj.addObj(entry.getKey(), data.get(entry.getKey()));
-				continue;
-			}
-		}
-		return jSonObj;
-	}
+//			} else if (entry.getValue() instanceof Thing) {
+//				System.out.println("inner");
+//			} else if (entry.getValue() instanceof HashMap) {
+//				HashMap<String, Object> innerMap = (HashMap<String, Object>) map.get(entry.getKey());
+//				jSonObj.add(entry.getKey(), toJsonLD(innerMap));
+//				continue;
+//			} else if (data.get(entry.getKey()) != null) {
+//				jSonObj.addObj(entry.getKey(), data.get(entry.getKey()));
+//				continue;
+//			}
+//		}
+//		return jSonObj;
+//	}
 
 	private HashMap<String, Object> buildHashMap(String type) {
 		HashMap<String, Object> map = new HashMap<>();
 		try {
-			JSONTokener tokener = new JSONTokener(new FileReader("./json/" + type.toLowerCase() + "Template.json"));
+//			JSONObject json = new JSONObject(type);
+//			JSONTokener tokener = new JSONTokener(new FileReader("./json/" + type.toLowerCase() + "Template.json"));
+			JSONTokener tokener = new JSONTokener(new FileReader("./json/baseTemplate.json"));
+//			JSONTokener tokener = new JSONTokener(new FileReader("./json/generated"+type+"Schema.json"));
 			JSONObject json = new JSONObject(tokener);
 			json.toMap().forEach((k, v) -> map.put(k.toString(), v));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return map;
-	}
-
-	private JSonObj generateInnerJson() {
-		JSonObj tempJSonObj = new JSonObj();
-
-		return tempJSonObj;
 	}
 
 //	private HashMap<String, Object> buildJsonMap(String type) {

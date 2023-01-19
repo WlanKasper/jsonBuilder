@@ -1,26 +1,32 @@
- { 
-  "@context": "http://www.schema.org",
-  "@type": "Hotel",
-  "name": null,
-  "url": null,
-  "logo": null,
-  "priceRange": null,
-  "image": null,
-  "description": null,
-  "address": {
-     "@type": "PostalAddress",
-     "streetAddress": null,
-     "addressLocality": null,
-     "addressRegion": null,
-     "postalCode": null,
-     "addressCountry": null
-  },
-  "geo": {
-     "@type": "GeoCoordinates",
-     "latitude": null,
-     "longitude": null
-  },
-  "hasMap": null,
-   "openingHours": null,
-  "telephone": null
+{
+	"@context": "http://www.schema.org",
+	"@type": "Hotel",
+	"name": null,
+	"url": null,
+	"logo": null,
+	"priceRange": null,
+	"image": null,
+	"description": null,
+	"petsAllowed": null,
+	"hasMap": null,
+	"openingHours": null,
+	"telephone": null,
+	"numberOfRooms": null,
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": null,
+		"addressLocality": null,
+		"addressRegion": null,
+		"postalCode": null,
+		"addressCountry": null
+	},
+	"starRating": {
+		"@type": "Rating",
+		"ratingValue": null
+	},
+	"geo": {
+		"@type": "GeoCoordinates",
+		"latitude": null,
+		"longitude": null
+	}
 }
