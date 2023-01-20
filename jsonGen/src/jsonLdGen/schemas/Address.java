@@ -1,6 +1,6 @@
 package jsonLdGen.schemas;
 
-public class Address {
+public class Address extends Thing{
 
 	private String streetAddress;
 	private String addressLocality;
@@ -22,6 +22,12 @@ public class Address {
 		this.addressCountry = addressCountry;
 		this.addressCountryCode = addressCountryCode;
 		this.addressCountryName = addressCountryName;
+		setType("PostalAddress");
+	}
+
+	public Address() {
+		super();
+		setType("PostalAddress");
 	}
 
 	public String getStreetAddress() {

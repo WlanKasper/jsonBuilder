@@ -39,6 +39,11 @@ public class Organization extends Thing {
 		this.legalName = legalName;
 		this.location = location;
 		this.review = review;
+//		setType("Organization");
+	}
+	
+	public Organization() {
+		
 	}
 
 	public String getTelephone() {

@@ -16,6 +16,10 @@ public class LocalBusiness extends Organization {
 		this.priceRange = priceRange;
 	}
 
+	public LocalBusiness() {
+
+	}
+
 	public List<String> getPaymentAccepted() {
 		return paymentAccepted;
 	}

@@ -1,60 +1,129 @@
 package jsonGen.main;
 
 import java.io.FileReader;
-import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.htjava.json.JSonElem;
 import org.htjava.json.JSonObj;
 import org.htjava.json.Json;
-import org.json.*;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import jsonGen.bean.Schema;
 import jsonLdGen.schemas.Hotel;
-import jsonLdGen.schemas.Thing;
 
 public class JsonLD {
-	private JSonObj json;
-	
-	private Hotel data;
-	private String prevType;
+//	private JSonObj json;
+	private List<Method> methods;
+//	private HashMap<String, Object> map;
+//	private String type;
+//	Hotel hotel;
+//	private Hotel data;
+//	private String prevType;
 
-	public JsonLD(Schema data) {
+//	public JsonLD(Schema data) {
+//		findMethods();
 //		this.data = data;
-		prevType = data.gettype();
-		json = new JSonObj();
-		json = buildJson(data.gettype());
+//		prevType = data.gettype();
+//		json = new JSonObj();
+//		json = buildJson(data.gettype());
+//	}
+
+//	public JsonLD(Hotel hotel1) {
+//		type = hotel1.getType();
+//		methods = new ArrayList<>();
+//		findMethods(hotel1.getClassName());
+//		map = buildHashMap();
+//	}
+
+	public JsonLD(Object object) {
+//		type = object.getClass().getName();
+		methods = new ArrayList<>();
+		findMethods(object.getClass().getName());
+//		map = buildHashMap();
 	}
 
-	public JsonLD(Hotel hotel) {
-		this.data= hotel;
-		json = new JSonObj();
-		json = buildJson(hotel.getType());
-	}
-
-	private JSonObj buildJson(String type) {
-		switch (type.toLowerCase()) {
-		case "hotel":
-			json = toJsonLD(buildHashMap(type));
-			System.out.println(Json.writeToString(json));
-			break;
-		case "address":
-			json = toJsonLD(buildHashMap(type));
-			return json;
-
-		default:
-			break;
+	private void findMethods(String className) {
+		try {
+			Class<?> c = Class.forName(className);
+//			Method[] temp = c.getMethods();
+			Method[] temp = c.getMethods();
+			int i = 0;
+			for (Method method : temp) {
+				if (method.getName().startsWith("get")) {
+					methods.add(method);
+					i++;
+				}
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-		return new JSonObj().add(null);
 	}
+
+	public JSonObj toJsonLD(Object obj) {
+		JSonObj jSonObj = new JSonObj();
+		for (Method method : methods) {
+//			Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
+//			while (iterator.hasNext()) {
+//				Map.Entry<String, Object> entry = iterator.next();
+			String str = method.getName();
+			str = str.substring(str.indexOf('t') + 1, str.length()).toLowerCase();
+//			System.out.println(str);
+//				if (str.toLowerCase().contains(entry.getKey())) {
+			try {
+				method.setAccessible(true);
+				Object resObject = method.invoke(obj);
+				if (resObject != null) {
+					if (str.equals("classname") || str.equals("class")) {
+//						jSonObj.addObj(str, resObject);
+						continue;
+					} else if (str.equals("type")) {
+						str = "@type";
+						jSonObj.addObj(str, resObject);
+						continue;
+					} else if (str.equals("context")) {
+						str = "@context";
+						jSonObj.addObj(str, resObject);
+						continue;
+					} 
+//					else if (resObject instanceof Number) {
+//						Number number = (Number) obj;
+//						if (number.doubleValue() == 0) {
+//							continue;
+//						}
+//					}
+					else if (!(resObject instanceof Integer) && !(resObject instanceof String)
+							&& !(resObject instanceof Long) && !(resObject instanceof Boolean)
+							&& !(resObject instanceof Double)) {
+						jSonObj.addObj(str, new JsonLD(resObject).toJsonLD(resObject));
+						continue;
+					} else {
+						jSonObj.addObj(str, resObject);	
+						continue;
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return jSonObj;
+	}
+
+//	private JSonObj buildJson(String type) {
+//		switch (type.toLowerCase()) {
+//		case "hotel":
+//			json = toJsonLD(buildHashMap(type));
+//			System.out.println(Json.writeToString(json));
+//			break;
+//		case "address":
+//			json = toJsonLD(buildHashMap(type));
+//			return json;
+//
+//		default:
+//			break;
+//		}
+//		return new JSonObj().add(null);
+//	}
 
 //	private JSonObj toJsonLD(HashMap<String, Object> map) {
 //		JSonObj jSonObj = new JSonObj();
@@ -82,7 +151,7 @@ public class JsonLD {
 //		return jSonObj;
 //	}
 
-	private HashMap<String, Object> buildHashMap(String type) {
+	private HashMap<String, Object> buildHashMap() {
 		HashMap<String, Object> map = new HashMap<>();
 		try {
 //			JSONObject json = new JSONObject(type);

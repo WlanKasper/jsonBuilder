@@ -12,8 +12,12 @@ public class Thing {
 	protected String url;
 	protected String image; // can be converted to a Image object, but we only use the url
 	protected static final String context = "http://www.schema.org";
-	protected String type = "Thing";
+	protected String type = "";
 
+	public Thing() {
+		setType(Types.THING.toString());
+	}
+	
 	public Thing(String name, String description, String url, String image) {
 		this.name = name;
 		this.description = description;
@@ -63,6 +67,9 @@ public class Thing {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getClassName() {
+		return this.getClass().getCanonicalName();
 	}
 
 }

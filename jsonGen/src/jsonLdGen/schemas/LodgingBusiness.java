@@ -24,6 +24,42 @@ public class LodgingBusiness extends LocalBusiness {
 		this.starRating = starRating;
 	}
 
+	public LodgingBusiness() {
+	}
+
+	public List<String> getAmenityFeature() {
+		return amenityFeature;
+	}
+
+	public void setAmenityFeature(List<String> amenityFeature) {
+		this.amenityFeature = amenityFeature;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+	public boolean isPetsAllowed() {
+		return petsAllowed;
+	}
+
+	public void setPetsAllowed(boolean petsAllowed) {
+		this.petsAllowed = petsAllowed;
+	}
+
+	public double getStarRating() {
+		return starRating;
+	}
+
+	public void setStarRating(double starRating) {
+		this.starRating = starRating;
+	}
+
+}
 //	public LodgingBusiness(List<String> amenityFeature, int numberOfRooms, boolean petsAllowed, double starRating) {
 //        this.amenityFeature = amenityFeature;
 //        this.numberOfRooms = numberOfRooms;
@@ -60,5 +96,3 @@ public class LodgingBusiness extends LocalBusiness {
 //	        this.name = name;
 //	    }
 //
-
-}

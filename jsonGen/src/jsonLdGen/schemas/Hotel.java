@@ -18,24 +18,16 @@ public class Hotel extends LodgingBusiness {
 		setType("Hotel");
 	}
 
+	public Hotel() {
+		setType(Types.HOTEL.toString());
+	}
+
 	public Place getPlace() {
 		return place;
 	}
 
 	public void setPlace(Place place) {
 		this.place = place;
-	}
-
-	public Object get(String key) {
-		switch (key) {
-		case "name":
-			return getName();
-		case "address":
-			return getAddress();
-		default:
-			break;
-		}
-		return null;
 	}
 
 }
