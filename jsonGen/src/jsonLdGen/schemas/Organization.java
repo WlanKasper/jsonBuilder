@@ -1,11 +1,11 @@
 package jsonLdGen.schemas;
 
-public class Organization extends Thing {
+import java.util.List;
 
-//	public Organization(String name, String description, String url, String image) {
-//		super(name, description, url, image);
-//
-//	}
+import org.htjava.json.JSonArray;
+import org.htjava.json.JSonObj;
+
+public class Organization extends Thing {
 
 	private String telephone;
 	private String email;
@@ -21,135 +21,86 @@ public class Organization extends Thing {
 	private Place location;
 	private Review review;
 
-	public Organization(String name, String description, String url, String image, String telephone, String email,
-			Address address, String logo, Person founder, AggregateRating aggregateRating, String areaServed,
-			ContactPoint contactPoint, OfferCatalog hasOfferCatalog, Place hasPOS, String legalName, Place location,
-			Review review) {
-		super(name, description, url, image);
-		this.telephone = telephone;
-		this.email = email;
-		this.address = address;
-		this.logo = logo;
-		this.founder = founder;
-		this.aggregateRating = aggregateRating;
-		this.areaServed = areaServed;
-		this.contactPoint = contactPoint;
-		this.hasOfferCatalog = hasOfferCatalog;
-		this.hasPOS = hasPOS;
-		this.legalName = legalName;
-		this.location = location;
-		this.review = review;
-//		setType("Organization");
-	}
-	
-	public Organization() {
-		
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
 	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getEmail() {
-		return email;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, telephone);
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Address getAddress() {
-		return address;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, email);
 	}
 
 	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public String getLogo() {
-		return logo;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, address.get());
 	}
 
 	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public Person getFounder() {
-		return founder;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, logo);
 	}
 
 	public void setFounder(Person founder) {
-		this.founder = founder;
-	}
-
-	public AggregateRating getAggregateRating() {
-		return aggregateRating;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, founder);
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
-		this.aggregateRating = aggregateRating;
-	}
-
-	public String getAreaServed() {
-		return areaServed;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, aggregateRating.get());
 	}
 
 	public void setAreaServed(String areaServed) {
-		this.areaServed = areaServed;
-	}
-
-	public ContactPoint getContactPoint() {
-		return contactPoint;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, areaServed);
 	}
 
 	public void setContactPoint(ContactPoint contactPoint) {
-		this.contactPoint = contactPoint;
-	}
-
-	public OfferCatalog getHasOfferCatalog() {
-		return hasOfferCatalog;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, contactPoint.get());
 	}
 
 	public void setHasOfferCatalog(OfferCatalog hasOfferCatalog) {
-		this.hasOfferCatalog = hasOfferCatalog;
-	}
-
-	public Place getHasPOS() {
-		return hasPOS;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, hasOfferCatalog);
 	}
 
 	public void setHasPOS(Place hasPOS) {
-		this.hasPOS = hasPOS;
-	}
-
-	public String getLegalName() {
-		return legalName;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, hasPOS);
 	}
 
 	public void setLegalName(String legalName) {
-		this.legalName = legalName;
-	}
-
-	public Place getLocation() {
-		return location;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, legalName);
 	}
 
 	public void setLocation(Place location) {
-		this.location = location;
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, location.get());
 	}
 
-	public Review getReview() {
-		return review;
+	public void setReviews(List<Review> reviews) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		JSonArray jArray= new JSonArray();
+		for (Review review : reviews) {
+			jArray.add(review.get());	
+		}
+		jObj.addObj(str, jArray);
 	}
-
-	public void setReview(Review review) {
-		this.review = review;
-	}
-	
-	
 
 }

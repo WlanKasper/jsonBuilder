@@ -13,46 +13,20 @@ import org.json.JSONTokener;
 import jsonLdGen.schemas.Hotel;
 
 public class JsonLD {
-//	private JSonObj json;
 	private List<Method> methods;
-//	private HashMap<String, Object> map;
-//	private String type;
-//	Hotel hotel;
-//	private Hotel data;
-//	private String prevType;
-
-//	public JsonLD(Schema data) {
-//		findMethods();
-//		this.data = data;
-//		prevType = data.gettype();
-//		json = new JSonObj();
-//		json = buildJson(data.gettype());
-//	}
-
-//	public JsonLD(Hotel hotel1) {
-//		type = hotel1.getType();
-//		methods = new ArrayList<>();
-//		findMethods(hotel1.getClassName());
-//		map = buildHashMap();
-//	}
 
 	public JsonLD(Object object) {
-//		type = object.getClass().getName();
 		methods = new ArrayList<>();
 		findMethods(object.getClass().getName());
-//		map = buildHashMap();
 	}
 
 	private void findMethods(String className) {
 		try {
 			Class<?> c = Class.forName(className);
-//			Method[] temp = c.getMethods();
 			Method[] temp = c.getMethods();
-			int i = 0;
 			for (Method method : temp) {
 				if (method.getName().startsWith("get")) {
 					methods.add(method);
-					i++;
 				}
 			}
 		} catch (ClassNotFoundException e) {
@@ -62,49 +36,9 @@ public class JsonLD {
 
 	public JSonObj toJsonLD(Object obj) {
 		JSonObj jSonObj = new JSonObj();
+
 		for (Method method : methods) {
-//			Iterator<Map.Entry<String, Object>> iterator = map.entrySet().iterator();
-//			while (iterator.hasNext()) {
-//				Map.Entry<String, Object> entry = iterator.next();
-			String str = method.getName();
-			str = str.substring(str.indexOf('t') + 1, str.length()).toLowerCase();
-//			System.out.println(str);
-//				if (str.toLowerCase().contains(entry.getKey())) {
-			try {
-				method.setAccessible(true);
-				Object resObject = method.invoke(obj);
-				if (resObject != null) {
-					if (str.equals("classname") || str.equals("class")) {
-//						jSonObj.addObj(str, resObject);
-						continue;
-					} else if (str.equals("type")) {
-						str = "@type";
-						jSonObj.addObj(str, resObject);
-						continue;
-					} else if (str.equals("context")) {
-						str = "@context";
-						jSonObj.addObj(str, resObject);
-						continue;
-					} 
-//					else if (resObject instanceof Number) {
-//						Number number = (Number) obj;
-//						if (number.doubleValue() == 0) {
-//							continue;
-//						}
-//					}
-					else if (!(resObject instanceof Integer) && !(resObject instanceof String)
-							&& !(resObject instanceof Long) && !(resObject instanceof Boolean)
-							&& !(resObject instanceof Double)) {
-						jSonObj.addObj(str, new JsonLD(resObject).toJsonLD(resObject));
-						continue;
-					} else {
-						jSonObj.addObj(str, resObject);	
-						continue;
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			
 		}
 		return jSonObj;
 	}

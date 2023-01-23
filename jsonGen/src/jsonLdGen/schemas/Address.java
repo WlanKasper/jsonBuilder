@@ -1,89 +1,88 @@
 package jsonLdGen.schemas;
 
-public class Address extends Thing{
+import org.htjava.json.JSonObj;
 
-	private String streetAddress;
-	private String addressLocality;
-	private String addressRegion;
-	private String postalCode;
-	private String addressCountry;
-	private String addressCountryCode;
-	private String addressCountryName;
+public class Address extends Thing {
 
+//	private JSonObj jObj;
+//	private String streetAddress;
+//	private String addressLocality;
+//	private String addressRegion;
+//	private String postalCode;
+//	private String addressCountry;
+//	private String addressCountryCode;
+//	private String addressCountryName;
 
-
-	public Address(String streetAddress, String addressLocality, String addressRegion, String postalCode,
-			String addressCountry, String addressCountryCode, String addressCountryName) {
-		super();
-		this.streetAddress = streetAddress;
-		this.addressLocality = addressLocality;
-		this.addressRegion = addressRegion;
-		this.postalCode = postalCode;
-		this.addressCountry = addressCountry;
-		this.addressCountryCode = addressCountryCode;
-		this.addressCountryName = addressCountryName;
-		setType("PostalAddress");
-	}
+//	public Address(String streetAddress, String addressLocality, String addressRegion, String postalCode,
+//			String addressCountry, String addressCountryCode, String addressCountryName) {
+//		super();
+//		this.streetAddress = streetAddress;
+//		this.addressLocality = addressLocality;
+//		this.addressRegion = addressRegion;
+//		this.postalCode = postalCode;
+//		this.addressCountry = addressCountry;
+//		this.addressCountryCode = addressCountryCode;
+//		this.addressCountryName = addressCountryName;
+//		setType(Types.ADDRESS.getType());
+//	}
 
 	public Address() {
 		super();
-		setType("PostalAddress");
+		setType(Types.ADDRESS.getType());
+//		jObj = new JSonObj();
 	}
 
-	public String getStreetAddress() {
-		return streetAddress;
+	public Address setStreetAddress(String streetAddress) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, streetAddress);
+		return this;
 	}
 
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
+	public Address setAddressLocality(String addressLocality) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, addressLocality);
+		return this;
 	}
 
-	public String getAddressLocality() {
-		return addressLocality;
+	public Address setAddressRegion(String addressRegion) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, addressRegion);
+		return this;
 	}
 
-	public void setAddressLocality(String addressLocality) {
-		this.addressLocality = addressLocality;
+	public Address setPostalCode(String postalCode) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, postalCode);
+		return this;
 	}
 
-	public String getAddressRegion() {
-		return addressRegion;
+	public Address setAddressCountry(String addressCountry) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, addressCountry);
+		return this;
 	}
 
-	public void setAddressRegion(String addressRegion) {
-		this.addressRegion = addressRegion;
+	public Address setAddressCountryCode(String addressCountryCode) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, addressCountryCode);
+		return this;
 	}
 
-	public String getPostalCode() {
-		return postalCode;
+	public Address setAddressCountryName(String addressCountryName) {
+		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t") + 1, str.length());
+		jObj.addObj(str, addressCountryName);
+		return this;
 	}
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-
-	public String getAddressCountry() {
-		return addressCountry;
-	}
-
-	public void setAddressCountry(String addressCountry) {
-		this.addressCountry = addressCountry;
-	}
-
-	public String getAddressCountryCode() {
-		return addressCountryCode;
-	}
-
-	public void setAddressCountryCode(String addressCountryCode) {
-		this.addressCountryCode = addressCountryCode;
-	}
-
-	public String getAddressCountryName() {
-		return addressCountryName;
-	}
-
-	public void setAddressCountryName(String addressCountryName) {
-		this.addressCountryName = addressCountryName;
+	public JSonObj getAddress() {
+		return jObj;
 	}
 
 //	public Address(String streetAddress, String addressLocality, String addressRegion, String postalCode,

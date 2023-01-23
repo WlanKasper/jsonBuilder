@@ -2,7 +2,11 @@ package jsonLdGen.schemas;
 
 import java.util.List;
 
+import org.htjava.json.JSonObj;
+
 public class Place extends Thing {
+
+//	private JSonObj jSonObj;
 	private String address;
 	private AggregateRating aggregateRating;
 	private AmenityFeature amenityFeature;
@@ -10,76 +14,54 @@ public class Place extends Thing {
 	private double latitude;
 	private double longitude;
 	private List<String> photos;
-	
-	public Place(String name, String description, String url, String image, String address,
-			AggregateRating aggregateRating, AmenityFeature amenityFeature, GeoCoordinates geo, double latitude,
-			double longitude, List<String> photos) {
-		super(name, description, url, image);
-		this.address = address;
-		this.aggregateRating = aggregateRating;
-		this.amenityFeature = amenityFeature;
-		this.geo = geo;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.photos = photos;
-	}
 
-	public String getAddress() {
-		return address;
+	public Place(GeoCoordinates geo) {
+		super();
+		setType(Types.PLACE.getType());
+		setGeo(geo);
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public AggregateRating getAggregateRating() {
-		return aggregateRating;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, address);
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
-		this.aggregateRating = aggregateRating;
-	}
-
-	public AmenityFeature getAmenityFeature() {
-		return amenityFeature;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, aggregateRating);
 	}
 
 	public void setAmenityFeature(AmenityFeature amenityFeature) {
-		this.amenityFeature = amenityFeature;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, amenityFeature);
 	}
 
-	public GeoCoordinates getGeo() {
-		return geo;
-	}
-
-	public void setGeo(GeoCoordinates geo) {
-		this.geo = geo;
-	}
-
-	public double getLatitude() {
-		return latitude;
+	public Place setGeo(GeoCoordinates geo) {
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, geo.get());
+		return this;
 	}
 
 	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-
-	public double getLongitude() {
-		return longitude;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, latitude);
 	}
 
 	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
-
-	public List<String> getPhotos() {
-		return photos;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, longitude);
 	}
 
 	public void setPhotos(List<String> photos) {
-		this.photos = photos;
+		String str= Thread.currentThread().getStackTrace()[1].getMethodName();
+		str = str.substring(str.indexOf("t")+1,str.length());
+		jObj.addObj(str, photos);
 	}
-	
-	
 
 }
