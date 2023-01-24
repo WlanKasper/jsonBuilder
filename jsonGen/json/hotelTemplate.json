@@ -1,40 +1,67 @@
 {
   "@type": "Hotel",
   "@context": "http://www.schema.org",
-  "Address": {
+  "name": "sku",
+  "address": {
     "@type": "PostalAddress",
-    "AddressCountry": "IT",
-    "PostalCode": "34127"
+    "addressCountry": "IT",
+    "postalCode": "34127"
   },
-  "AggregateRating": {
+  "aggregateRating": {
+    "ratingValue": "3.5",
     "@type": "AggregateRating",
-    "RatingValue": "3.5",
-    "ReviewCount": 800,
-    "starRating": { "@type": "Rating", "RatingValue": "3.5" }
+    "reviewCount": 800
   },
-  "ContactPoint": {
+  "contactPoint": {
     "@type": "ContactPoint",
     "areaServed": {
       "@type": "Place",
-      "Geo": {
+      "geo": {
         "@type": "GeoCoordinates",
-        "Latitude": "46.103352",
-        "Longitude": "10.845998"
+        "latitude": "46.103352",
+        "longitude": "10.845998"
       }
     },
-    "Telephone": "33391023"
+    "telephone": "33391023"
   },
-  "Reviews": [
+  "review": [
     {
       "@type": "Review",
-      "Author": "Goodman",
-      "Rating": { "@type": "Rating", "RatingValue": "4.5" }
+      "author": "Goodman",
+      "reviewRating": { "ratingValue": "4.5" }
     },
     {
       "@type": "Review",
-      "Author": "Chad Bro",
-      "Rating": { "@type": "Rating", "RatingValue": "5.0" }
+      "author": "Chad Bro",
+      "reviewRating": { "ratingValue": "5.0" },
+      "datePublished": "2023-01-24"
     }
   ],
-  "Name": "The test"
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "33.12312",
+    "longitude": "6.434355"
+  },
+  "location": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "33.12312",
+      "longitude": "6.434355"
+    }
+  },
+  "founder": { "@type": "Person", "name": "GIACOMO" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Lampada catalog",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "itemListElement": [
+          "@type: Offer",
+          { "@type": "Product", "name": "Extreme one" }
+        ]
+      }
+    ]
+  }
 }

@@ -1,6 +1,5 @@
-package jsonLdGen.schemas;
+package jsonLdBuilder.schemas;
 
-import java.util.List;
 
 public class Hotel extends LodgingBusiness {
 

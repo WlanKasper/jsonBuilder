@@ -1,149 +1,142 @@
 {
-	"@context": "http://www.schema.org",
-	"@type": "Hotel",
-	"numberOfRooms": null,
-	"petsAllowed": null,
-	"paymentAccepted": null,
-	"priceRange": null,
-	"name": null,
-	"url": null,
-	"areaServed": null,
-	"email": null,
-	"legalName": null,
-	"logo": null,
-	"telephone": null,
-	"amenityFeature": null,
-	"description": null,
-	
-	"address": {
-		"@type": "PostalAddress",
-		"streetAddress": null,
-		"addressLocality": null,
-		"addressRegion": null,
-		"postalCode": null,
-		"addressCountry": null
-	},
-	
-	"aggregateRating": {
-		"@type": "AggregateRating",
-		"ratingValue": null,
-		"reviewCount": null,
-		
-		"starRating": {
-			"@type": "Rating",
-			"ratingValue": null,
-			"bestRating": null,
-			"worstRating": null
-		}
-		
-	},
-	
-	"contactPoint": {
-		"@type": "ContactPoint",
-		"telephone": null,
-		"contactType": null,
-		"contactOption": null,
-		
-		"areaServed": {
-			"@type": "Place",
-			"name": null,
-			"geo": {
-				"@type": "GeoCoordinates",
-				"latitude": null,
-				"longitude": null
-			}
-		}
-		
-	},
-	
-	"founder": {
-		"@type": "Person",
-		"name": null
-	},
-	
-	"hasOfferCatalog": {
-		"@type": "OfferCatalog",
-		"name": null,
-		
-		"itemListElement": [
-			{
-				"@type": "OfferCatalog",
-				"name": null,
-				
-				"itemListElement": [
-					{
-					
-						"@type": "Offer",
-						"itemOffered": {
-							"@type": null,
-							"name": null
-						}
-					}
-				]
-				
-			}
-		]
-	},
-	
-	"hasPOS": {
-		"@type": "Place",
-		"name": null,
-		
-		"geo": {
-			"@type": "GeoCoordinates",
-			"latitude": null,
-			"longitude": null
-		}
-		
-	},
-	
-	"location": {
-	
-		"@type": "Place",
-		"name": null, 
-		
-		"geo": {
-			"@type": "GeoCoordinates",
-			"latitude": null,
-			"longitude": null
-		}
-		
-	},
+  "@context": "http://www.schema.org",
+  "@type": "Hotel",
+  "numberOfRooms": null,
+  "petsAllowed": null,
+  "paymentAccepted": null,
+  "priceRange": null,
+  "name": null,
+  "url": null,
+  "areaServed": null,
+  "email": null,
+  "legalName": null,
+  "logo": null,
+  "telephone": null,
+  "amenityFeature": null,
+  "description": null,
 
-	"review": [
-		{
-			"@type": "Review",
-			"author": null,
-			"datePublished": null,
-			"reviewBody": null,
-			"name": null,
-			
-			"reviewRating": {
-				"@type": "Rating",
-				"bestRating": null,
-				"ratingValue": null,
-				"worstRating": null
-			}
-		}
-	],
-	
-	"geo": {
-		"@type": "GeoCoordinates",
-		"latitude": null,
-		"longitude": null
-	},
-	
-	"photo": [
-		{
-			"@type": "ImageObject",
-			"url": null
-		}
-	],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": null,
+    "addressLocality": null,
+    "addressRegion": null,
+    "postalCode": null,
+    "addressCountry": null
+  },
 
-	"image": [
-		{
-			"@type": "ImageObject",
-			"url": null
-		}
-	]
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": null,
+    "reviewCount": null,
+
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": null,
+      "bestRating": null,
+      "worstRating": null
+    }
+  },
+
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": null,
+    "contactType": null,
+    "contactOption": null,
+
+    "areaServed": {
+      "@type": "Place",
+      "name": null,
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": null,
+        "longitude": null
+      }
+    }
+  },
+
+  "founder": {
+    "@type": "Person",
+    "name": null
+  },
+
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": null,
+
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": null,
+
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": null,
+              "name": null
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  "hasPOS": {
+    "@type": "Place",
+    "name": null,
+
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": null,
+      "longitude": null
+    }
+  },
+
+  "location": {
+    "@type": "Place",
+    "name": null,
+
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": null,
+      "longitude": null
+    }
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "author": null,
+      "datePublished": null,
+      "reviewBody": null,
+      "name": null,
+
+      "reviewRating": {
+        "@type": "Rating",
+        "bestRating": null,
+        "ratingValue": null,
+        "worstRating": null
+      }
+    }
+  ],
+
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": null,
+    "longitude": null
+  },
+
+  "photo": [
+    {
+      "@type": "ImageObject",
+      "url": null
+    }
+  ],
+
+  "image": [
+    {
+      "@type": "ImageObject",
+      "url": null
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-package jsonGen.main;
+package jsonGen.extremeTesting;
 
 import java.io.FileReader;
 import java.io.IOException;

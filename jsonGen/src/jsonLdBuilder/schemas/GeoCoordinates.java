@@ -1,4 +1,4 @@
-package jsonLdGen.schemas;
+package jsonLdBuilder.schemas;
 
 public class GeoCoordinates extends Thing {
 //	Long latitude;
@@ -12,16 +12,13 @@ public class GeoCoordinates extends Thing {
 	}
 
 	public GeoCoordinates setLatitude(double latitude) {
-		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
-		str = str.substring(str.indexOf("t") + 1, str.length());
-		jObj.addObj(str, latitude);
+		set("latitude", latitude);
 		return this;
 	}
 
 	public GeoCoordinates setLongitude(double longitude) {
-		String str = Thread.currentThread().getStackTrace()[1].getMethodName();
-		str = str.substring(str.indexOf("t") + 1, str.length());
-		jObj.addObj(str, longitude);
+		
+		set("longitude", longitude);
 		return this;
 	}
 

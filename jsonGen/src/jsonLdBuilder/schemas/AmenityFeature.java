@@ -1,4 +1,4 @@
-package jsonLdGen.schemas;
+package jsonLdBuilder.schemas;
 
 public class AmenityFeature {
 

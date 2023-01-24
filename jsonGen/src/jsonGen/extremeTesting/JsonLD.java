@@ -1,4 +1,4 @@
-package jsonGen.main;
+package jsonGen.extremeTesting;
 
 import java.io.FileReader;
 import java.lang.reflect.Method;
@@ -10,7 +10,7 @@ import org.htjava.json.Json;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import jsonLdGen.schemas.Hotel;
+import jsonLdBuilder.schemas.Hotel;
 
 public class JsonLD {
 	private List<Method> methods;

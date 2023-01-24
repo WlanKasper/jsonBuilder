@@ -13,19 +13,20 @@ import org.jsoup.select.Elements;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-
 public class SchemaGetterSetterBuilder {
 
 	private Document doc;
 	JsonObject jsonObject;
-	
+
 	public SchemaGetterSetterBuilder() {
-		
+
 	}
+
+	
 
 	public void build(String type) {
 		try {
-			doc = Jsoup.connect("https://schema.org/"+type).get();
+			doc = Jsoup.connect("https://schema.org/" + type).get();
 			Elements scriptElements = doc.getElementsByTag("script");
 			String jsonString = null;
 			for (Element scriptElement : scriptElements) {
@@ -34,17 +35,15 @@ public class SchemaGetterSetterBuilder {
 					break;
 				}
 			}
-			
-		    Gson gson = new Gson();
-		    jsonObject = gson.fromJson(jsonString, JsonObject.class);
-		    
-		    
 
-			File file = new File("./json/generated"+type+"Schema.json");
-		    if (!file.exists()) {
-		        file.createNewFile();
-		    }
-			FileWriter fileWriter = new FileWriter("./json/generated"+type+"Schema.json");
+			Gson gson = new Gson();
+			jsonObject = gson.fromJson(jsonString, JsonObject.class);
+
+			File file = new File("./json/generated" + type + "Schema.json");
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			FileWriter fileWriter = new FileWriter("./json/generated" + type + "Schema.json");
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 			bufferedWriter.write(jsonString);
 			bufferedWriter.close();
@@ -61,6 +60,5 @@ public class SchemaGetterSetterBuilder {
 	public void setJsonObject(JsonObject jsonObject) {
 		this.jsonObject = jsonObject;
 	}
-	
 
 }

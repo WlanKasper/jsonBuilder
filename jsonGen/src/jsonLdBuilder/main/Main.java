@@ -1,4 +1,4 @@
-package jsonGen.main;
+package jsonLdBuilder.main;
 
 public class Main {
 
