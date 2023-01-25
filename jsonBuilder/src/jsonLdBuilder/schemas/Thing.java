@@ -5,6 +5,7 @@ import java.util.List;
 import org.htjava.json.JSonArray;
 import org.htjava.json.JSonObj;
 
+
 public class Thing {
 
 	protected JSonObj jObj;
@@ -53,6 +54,11 @@ public class Thing {
 		set("image", jArray);
 		return this;
 	}
+	
+	public Thing setImage(String image) {
+		set("image", image);
+		return this;
+	}
 
 	public Thing setPhotos(List<String> photosURLs) {
 		JSonArray jArray = new JSonArray();
@@ -60,6 +66,10 @@ public class Thing {
 			jArray.add(photoURL);
 		}
 		set("photo", jArray);
+		return this;
+	}
+	public Thing setPhotos(String photoURL) {
+		set("photo", photoURL);
 		return this;
 	}
 

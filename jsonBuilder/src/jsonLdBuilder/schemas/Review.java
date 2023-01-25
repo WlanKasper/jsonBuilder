@@ -3,13 +3,8 @@ package jsonLdBuilder.schemas;
 import java.time.LocalDate;
 
 public class Review extends Thing {
-//	private String author;
-//	private String reviewBody;
-//	private LocalDate datePublished;
-//	private int rating;
-//	private String itemReviewed;
 
-	public Review(String author, Rating rating) {
+	public Review(Person author, Rating rating) {
 		super();
 		setType(Types.REVIEW.getType());
 		setAuthor(author);
@@ -21,8 +16,8 @@ public class Review extends Thing {
 		return this;
 	}
 
-	public Review setAuthor(String author) {
-		set("author", author);
+	public Review setAuthor(Person author) {
+		set("author", author.get());
 		return this;
 	}
 
@@ -38,6 +33,11 @@ public class Review extends Thing {
 		return this;
 	}
 
+	public Review setDatePublished(String datePublished) {
+		set("datePublished", datePublished);
+		return this;
+	}
+
 	public Review setRating(Rating rating) {
 
 		set("reviewRating", rating.get());
@@ -47,6 +47,16 @@ public class Review extends Thing {
 	public Review setItemReviewed(String itemReviewed) {
 
 		set("itemReviewed", itemReviewed);
+		return this;
+	}
+
+	public Review setInLanguage(String inLanguage) {
+		set("inLanguage", inLanguage);
+		return this;
+	}
+
+	public Review setIsFamilyFriendly(String isFamilyFriendly) {
+		set("isFamilyFriendly", isFamilyFriendly);
 		return this;
 	}
 

@@ -29,22 +29,9 @@ public class Address extends Thing {
 		set("postalCode", postalCode);
 		return this;
 	}
-
-	public Address setAddressCountry(String addressCountry) {
-
-		set("addressCountry", addressCountry);
-		return this;
-	}
-
-	public Address setAddressCountryCode(String addressCountryCode) {
-
-		set("addressCountryCode", addressCountryCode);
-		return this;
-	}
-
-	public Address setAddressCountryName(String addressCountryName) {
-
-		set("addressCountryName", addressCountryName);
+	
+	public Address setAddressCountry(AddressCountry addressCountry) {
+		set("addressCountry", addressCountry.get());
 		return this;
 	}
 
