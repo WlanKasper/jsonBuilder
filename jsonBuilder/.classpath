@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/mett/Documents/C0ding/jsonBuilder/json-ld.jar"/>
+	<classpathentry kind="lib" path="/Users/mett/Downloads/jsonld copy.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
