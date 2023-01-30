@@ -55,13 +55,12 @@ public class ContactPoint extends Thing {
 	 * @return {@link ContactPoint} per abilitare la sintessi concatenata
 	 */
 	public ContactPoint setContactOption(String contactOption) {
-		if (contactOption.equals("TollFree") || contactOption.equals("HearingImpairedSupported")
-				|| contactOption.equals("TollFree,HearingImpairedSupported")
-				|| contactOption.equals("TollFree, HearingImpairedSupported")) {
-			set("contactOption", contactOption);
-		} else {
+		if (!contactOption.contains("TollFree") || !contactOption.contains("HearingImpairedSupported")) {
 			throw new IllegalArgumentException("contactOption can be only 'HearingImpairedSupported' or 'TollFree' ");
+			return;
 		}
+
+		set("contactOption", contactOption);
 		return this;
 	}
 
